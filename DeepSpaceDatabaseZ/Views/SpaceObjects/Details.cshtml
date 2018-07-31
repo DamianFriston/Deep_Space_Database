@@ -1,0 +1,66 @@
+﻿@model DeepSpaceDatabaseZ.Models.SpaceObject
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="text-center" style="font-family:'Abel'">Details</h2>
+
+<hr />
+
+<div class="text-center">
+
+	<img src="@Html.DisplayFor(model => model.URL)" width="500px" height="345px" />
+
+</div>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.URL):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Magnitude):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Magnitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            Distance (l/y):
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distance)
+        </dd>
+
+    </dl>
+</div>
+<p class="text-center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

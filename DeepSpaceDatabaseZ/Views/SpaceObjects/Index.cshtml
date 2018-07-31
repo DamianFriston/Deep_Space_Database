@@ -1,0 +1,87 @@
+﻿@model IEnumerable<DeepSpaceDatabaseZ.Models.SpaceObject>
+<meta charset="utf-8"/>
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2 class="text-center" style="font-family:'Abel'">Deep Space Database</h2>
+<br />
+
+<p style="float:right">
+	@Html.ActionLink("Create New", "Create")
+	
+	@using (Html.BeginForm()) {
+	<p>
+		Category: @Html.DropDownList("Category", "All") 
+		&nbsp &nbsp Name: @Html.TextBox("SearchString") 
+		&nbsp &nbsp Cut-off Magnitude: @Html.TextBox("MinMagnitude")
+		&nbsp &nbsp Alphabetise: <input id="isChecked" type="checkbox" name="isChecked" value="on" style="vertical-align:middle"/>
+		&nbsp &nbsp &nbsp<input type="submit" value="Filter" /> 	</p>
+	}
+	
+</p>
+<br />
+<table class="table">
+    <tr>
+        <th>
+			<p data-toggle="popover" data-content="Image of Space Object (provided by URL address)" data-trigger="hover" data-placement="top" style="margin-bottom:0px">
+            Image
+			</p>
+        </th>
+        <th>
+			<p data-toggle="popover" data-content="Name of Space Object" data-trigger="hover" data-placement="top" style="margin-bottom:0px">
+            @Html.DisplayNameFor(model => model.Name)
+			</p>
+        </th>
+        <th>
+			<p data-toggle="popover" data-content="Measurement of Space Object's brightness as seen from Earth. The brighter an object appears, the lower its magnitude value" data-trigger="hover" data-placement="top" style="margin-bottom:0px">
+            @Html.DisplayNameFor(model => model.Magnitude)
+			</p>
+        </th>
+        <th>
+			<p data-toggle="popover" data-content="The type of which the Space Object is categorised. For example, 'Spiral Galaxy', or 'Neutron Star'" data-trigger="hover" data-placement="top" style="margin-bottom:0px">
+            @Html.DisplayNameFor(model => model.Category)
+			</p>
+        </th>
+        <th>
+			<p data-toggle="popover" data-content="The distance of the Space Object from Earth as represented in Light years (l/y)" data-trigger="hover" data-placement="top" style="margin-bottom:0px">
+            Distance (l/y)
+			</p>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+			<img src="@Html.DisplayFor(model => item.URL)" width="200px" height="130px" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Magnitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Distance)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+			@Html.ActionLink("Details", "Details", new { id=item.ID }) |
+			@Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
